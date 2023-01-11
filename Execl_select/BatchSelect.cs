@@ -119,26 +119,22 @@ namespace Execl_select
             {
                 var imei = item["IMEI"].ToString();
                 var weizhi = item["位置"].ToString();
-                if (imei!="")
+                Sql = $"exec Imei_Pannel @IMEI='{imei}'";
+                var pannel = GetALL78.Read(Sql);
+                if (imei != "")
                 {
-                    Sql = $"exec Imei_Pannel @IMEI='{imei}'";
-                    var pannel = GetALL78.Read(Sql);
-                    if (pannel != "")
+                    Sql = $"select distinct C.CompName,C.MnfDate,C.LotNo from PcbTrace P,DeviceTrace D,ComponentTrace C WHERE P.DeviceID=D.DeviceID and D.CompID=C.CompID and P.McID=D.McID and  P.PcbID='{pannel}'and D.Reference='{weizhi}'";
+                    try
                     {
-                        Sql = $"select distinct C.CompName,C.MnfDate,C.LotNo from PcbTrace P,DeviceTrace D,ComponentTrace C WHERE P.DeviceID=D.DeviceID and D.CompID=C.CompID and P.McID=D.McID and  P.PcbID='{pannel}'and D.Reference='{weizhi}'";
-                        try
-                        {
-                            var show = new ReelInfo() { IMEI = imei, Pannel = pannel, CompName = GetALL2.ReelID(Sql)[0], DC = GetALL2.ReelID(Sql)[1], LotNober = GetALL2.ReelID(Sql)[2] };
-                            list.Add(show);
-                        }
-                        catch (Exception)
-                        {
+                        var show = new ReelInfo() { IMEI = imei, Pannel = pannel, CompName = GetALL2.ReelID(Sql)[0], DC = GetALL2.ReelID(Sql)[1], LotNober = GetALL2.ReelID(Sql)[2] };
+                        list.Add(show);
+                    }
+                    catch (Exception)
+                    {
 
-                            MessageBox.Show(imei + "：无信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                        }
+                        MessageBox.Show(imei + "：无信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
-                break;
             }
             return list;
             
