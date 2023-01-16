@@ -19,6 +19,8 @@ namespace Execl_select
 
         }
         BLL BLL = new BLL();
+        
+        //批量查询界面展示。调用方法展示
         private void button1_Click(object sender, EventArgs e)
         {
             model.Chosetime = choseTime.Text;
@@ -35,24 +37,33 @@ namespace Execl_select
                 if (comboBoxEdit1.Text == "IMEI 位置》QT DC LOT")
                 {
                     gridControl1.DataSource = BLL.Imei_QTDCLOT(excelDt);
+                    FinishNews.Text = "查询结束"; 
+                    FinishNews.ForeColor = Color.Red;
                 }
                 else if (comboBoxEdit1.Text == "IMEI》Pannel")
                 {
                     gridControl1.DataSource = BLL.imei_Pannels(excelDt);
+                    FinishNews.Text = "查询结束";
+                    FinishNews.ForeColor = Color.Red;
                 }
                 else if (comboBoxEdit1.Text == "QWSQ 位置》QT DC LOT")
                 {
                     gridControl1.DataSource = BLL.QWSQ_Pannel(excelDt);
+                    FinishNews.Text = "查询结束";
+                    FinishNews.ForeColor = Color.Red;
                 }
                 else if (comboBoxEdit1.Text == "Pannel 位置》QT DC LOT")
                 {
                     gridControl1.DataSource = BLL.Pannel_QTDCLOT(excelDt);
+                    FinishNews.Text = "查询结束";
+                    FinishNews.ForeColor = Color.Red;
                 }
                 else
                 {
                     MessageBox.Show("错误！请选择查询列别", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 comboBoxEdit1.Text = "";
+                //FinishNews.Text = "";
 
                 //for (int i = 0; i < excelDt.Rows.Count; i++)
                 //{ 
@@ -104,6 +115,11 @@ namespace Execl_select
         {
             choseTime.Text = radioButton2.Text;
         }
+
+        private void comboBoxEdit1_Click(object sender, EventArgs e)
+        {
+            FinishNews.Text = "";
+        }
     }
     public class BLL
     {
@@ -111,6 +127,8 @@ namespace Execl_select
         DALL78 GetALL78 = new DALL78();
         DALL2 GetALL2 = new DALL2();
         string Sql = "";
+
+        //Iemi 查询料号信息
         public List<ReelInfo> Imei_QTDCLOT(DataTable dataTable)
         {
 
@@ -140,6 +158,7 @@ namespace Execl_select
             
         }
 
+        //Iemi 查询PCB号信息
         public List<Imei_Pannel> imei_Pannels(DataTable dataTable)
         {
             var list = new List<Imei_Pannel>();
@@ -160,6 +179,8 @@ namespace Execl_select
             }
             return list;
         }
+
+        ////通过测试工单查询PCB号
         public List<QWSQ_Pannel> QWSQ_Pannel(DataTable dataTable)
         {
             var list = new List<QWSQ_Pannel>();

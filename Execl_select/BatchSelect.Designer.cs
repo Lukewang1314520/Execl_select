@@ -40,6 +40,7 @@ namespace Execl_select
             this.choseTime = new DevExpress.XtraEditors.LabelControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.FinishNews = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -134,7 +135,7 @@ namespace Execl_select
             // comboBoxEdit1
             // 
             this.comboBoxEdit1.EditValue = "IMEI 位置》QT DC LOT";
-            this.comboBoxEdit1.Location = new System.Drawing.Point(17, 12);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(17, 20);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -145,12 +146,24 @@ namespace Execl_select
             "Pannel 位置》QT DC LOT"});
             this.comboBoxEdit1.Size = new System.Drawing.Size(195, 20);
             this.comboBoxEdit1.TabIndex = 9;
+            this.comboBoxEdit1.Click += new System.EventHandler(this.comboBoxEdit1_Click);
+            // 
+            // FinishNews
+            // 
+            this.FinishNews.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FinishNews.Appearance.Options.UseFont = true;
+            this.FinishNews.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.FinishNews.Location = new System.Drawing.Point(28, 460);
+            this.FinishNews.Name = "FinishNews";
+            this.FinishNews.Size = new System.Drawing.Size(99, 27);
+            this.FinishNews.TabIndex = 12;
             // 
             // BatchSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 532);
+            this.Controls.Add(this.FinishNews);
             this.Controls.Add(this.comboBoxEdit1);
             this.Controls.Add(this.choseTime);
             this.Controls.Add(this.groupBox1);
@@ -180,6 +193,7 @@ namespace Execl_select
         private DevExpress.XtraEditors.LabelControl choseTime;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.LabelControl FinishNews;
     }
 }
 
