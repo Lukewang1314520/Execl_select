@@ -31,11 +31,14 @@ namespace Execl_select
         {
             this.StockTraceView = new System.Windows.Forms.DataGridView();
             this.simpleButtonStock = new DevExpress.XtraEditors.SimpleButton();
-            this.WorkID = new DevExpress.XtraEditors.LabelControl();
             this.workIDshow = new DevExpress.XtraEditors.TextEdit();
             this.simpleButtonDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.StockTraceView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workIDshow.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // StockTraceView
@@ -54,55 +57,79 @@ namespace Execl_select
             // 
             // simpleButtonStock
             // 
-            this.simpleButtonStock.Location = new System.Drawing.Point(87, 120);
+            this.simpleButtonStock.Location = new System.Drawing.Point(12, 300);
             this.simpleButtonStock.Name = "simpleButtonStock";
-            this.simpleButtonStock.Size = new System.Drawing.Size(100, 23);
+            this.simpleButtonStock.Size = new System.Drawing.Size(200, 23);
             this.simpleButtonStock.TabIndex = 6;
             this.simpleButtonStock.Text = "确认";
             this.simpleButtonStock.Click += new System.EventHandler(this.simpleButtonStock_Click);
             // 
-            // WorkID
-            // 
-            this.WorkID.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkID.Appearance.Options.UseFont = true;
-            this.WorkID.Location = new System.Drawing.Point(26, 49);
-            this.WorkID.Name = "WorkID";
-            this.WorkID.Size = new System.Drawing.Size(48, 19);
-            this.WorkID.TabIndex = 5;
-            this.WorkID.Text = "工单号";
-            // 
             // workIDshow
             // 
-            this.workIDshow.Location = new System.Drawing.Point(87, 50);
+            this.workIDshow.Location = new System.Drawing.Point(12, 236);
             this.workIDshow.Name = "workIDshow";
-            this.workIDshow.Size = new System.Drawing.Size(100, 20);
+            this.workIDshow.Size = new System.Drawing.Size(200, 20);
             this.workIDshow.TabIndex = 4;
             // 
             // simpleButtonDelete
             // 
-            this.simpleButtonDelete.Location = new System.Drawing.Point(175, 12);
+            this.simpleButtonDelete.Location = new System.Drawing.Point(164, 12);
             this.simpleButtonDelete.Name = "simpleButtonDelete";
-            this.simpleButtonDelete.Size = new System.Drawing.Size(66, 23);
+            this.simpleButtonDelete.Size = new System.Drawing.Size(77, 23);
             this.simpleButtonDelete.TabIndex = 8;
             this.simpleButtonDelete.Text = "删除";
             this.simpleButtonDelete.Click += new System.EventHandler(this.simpleButtonDelete_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 87);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "根据查询条件";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(37, 69);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(59, 16);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "ReelID";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(37, 30);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(59, 16);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "工单号";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // StockSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.simpleButtonDelete);
             this.Controls.Add(this.StockTraceView);
             this.Controls.Add(this.simpleButtonStock);
-            this.Controls.Add(this.WorkID);
             this.Controls.Add(this.workIDshow);
             this.Name = "StockSelect";
             this.Text = "线边仓备料查询及删除";
             ((System.ComponentModel.ISupportInitialize)(this.StockTraceView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workIDshow.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -110,8 +137,10 @@ namespace Execl_select
 
         private System.Windows.Forms.DataGridView StockTraceView;
         private DevExpress.XtraEditors.SimpleButton simpleButtonStock;
-        private DevExpress.XtraEditors.LabelControl WorkID;
         private DevExpress.XtraEditors.TextEdit workIDshow;
         private DevExpress.XtraEditors.SimpleButton simpleButtonDelete;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

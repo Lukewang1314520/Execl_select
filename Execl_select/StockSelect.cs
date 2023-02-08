@@ -15,12 +15,14 @@ namespace Execl_select
         public StockSelect()
         {
             InitializeComponent();
+            model.Chosetime = "2022-5月之后";
         }
 
         private void simpleButtonStock_Click(object sender, EventArgs e)
         {
-            model.Chosetime = "2022-5月之后";
-            if (workIDshow.Text!="")
+            //model.Chosetime = "2022-5月之后";
+            
+            if (radioButton1.Checked==true&&workIDshow.Text!="")
             {
                 try
                 {
@@ -30,20 +32,32 @@ namespace Execl_select
                 }
                 catch (Exception)
                 {
+                    MessageBox.Show("系统出错，请联系IT处理！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);                   
+                }
+            }
+            else if(radioButton2.Checked == true && workIDshow.Text != "")
+            {
+                try
+                {
+                    DALL2 dALL2 = new DALL2();
+                    string Sql = $"select WorkOrder,ReelID,Station,Program,CreateTime from IsFirstMaterialNo where ReelID='{workIDshow.Text}'";
+                    StockTraceView.DataSource = dALL2.Adapter(Sql);
+                }
+                catch (Exception)
+                {
                     MessageBox.Show("系统出错，请联系IT处理！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    
                 }
             }
             else
             {
-                MessageBox.Show("请输入工单号！！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("请选中条件并填入信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            model.Chosetime = "2022-5月之后";
-            if (workIDshow.Text != "")
+            //model.Chosetime = "2022-5月之后";
+            if (radioButton1.Checked == true && workIDshow.Text != "")
             {
                 DialogResult dt= MessageBox.Show("确认是否删除！！", "警告！", MessageBoxButtons.YesNo);
                 if (dt==DialogResult.Yes)
@@ -69,9 +83,35 @@ namespace Execl_select
                     }
                 }
             }
+            else if (radioButton2.Checked == true && workIDshow.Text != "")
+            {
+                DialogResult dt = MessageBox.Show("确认是否删除！！", "警告！", MessageBoxButtons.YesNo);
+                if (dt == DialogResult.Yes)
+                {
+                    try
+                    {
+                        DALL2 dALL2 = new DALL2();
+                        string Sql = $"delete IsFirstMaterialNo where = ReelID'{workIDshow.Text}'";
+                        int a = dALL2.Execute(Sql);
+                        if (a > 0)
+                        {
+                            MessageBox.Show("删除成功！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        }
+                        else
+                        {
+                            MessageBox.Show("系统出错，请联系IT处理！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("系统出错，请联系IT处理！！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    }
+                }
+            }
             else
             {
-                MessageBox.Show("请输入工单号！！！");
+                MessageBox.Show("请选中条件并输入信息！！！");
             }
         }
     }
