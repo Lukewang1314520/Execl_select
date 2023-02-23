@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Execl_select
@@ -15,11 +11,11 @@ namespace Execl_select
         public BatchSelect()
         {
             InitializeComponent();
-            
+
 
         }
         BLL BLL = new BLL();
-        
+
         //批量查询界面展示。调用方法展示
         private void button1_Click(object sender, EventArgs e)
         {
@@ -29,7 +25,7 @@ namespace Execl_select
             //var weizhi = "";
             //var Listreel = new List<ReelInfo>();
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory.ToString()+"using";
+            openFile.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory.ToString() + "using";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFile.FileName;
@@ -37,7 +33,7 @@ namespace Execl_select
                 if (comboBoxEdit1.Text == "IMEI 位置》QT DC LOT")
                 {
                     gridControl1.DataSource = BLL.Imei_QTDCLOT(excelDt);
-                    FinishNews.Text = "查询结束"; 
+                    FinishNews.Text = "查询结束";
                     FinishNews.ForeColor = Color.Red;
                 }
                 else if (comboBoxEdit1.Text == "IMEI》Pannel")
@@ -155,7 +151,7 @@ namespace Execl_select
                 }
             }
             return list;
-            
+
         }
 
         //Iemi 查询PCB号信息
@@ -168,7 +164,7 @@ namespace Execl_select
                 Sql = $"exec Imei_Pannel @IMEI='{Imei}'";
                 try
                 {
-                    var show = new Imei_Pannel() { IMEI = Imei, Pannel = GetALL78.Read(Sql)};
+                    var show = new Imei_Pannel() { IMEI = Imei, Pannel = GetALL78.Read(Sql) };
                     list.Add(show);
                 }
                 catch (Exception)
@@ -188,9 +184,9 @@ namespace Execl_select
             {
                 var QWSQ = item["QWSQ"].ToString();
                 var weizhi = item["位置"].ToString();
-                Sql = $"select TOP (1) Panel from Laser_Panel_Log where MO='{QWSQ}'"; 
+                Sql = $"select TOP (1) Panel from Laser_Panel_Log where MO='{QWSQ}'";
                 var OrderID = GetALL78.Read(Sql);
-                OrderID = OrderID.Substring(0, 11);
+                OrderID = OrderID.Substring(0, 10);
                 if (OrderID != "")
                 {
                     Sql = $"select distinct C.CompName,C.MnfDate,C.LotNo from PcbTrace P,DeviceTrace D,ComponentTrace C where P.DeviceID = D.DeviceID and D.CompID = C.CompID and D.McID = P.McID and P.PcbID like '{OrderID}%' and D.Reference = '{weizhi}'";
@@ -220,17 +216,17 @@ namespace Execl_select
                 try
 
                 {
-                   var show = new ReelInfo() { Pannel = Pannel, CompName = GetALL2.ReelID(Sql)[0], DC = GetALL2.ReelID(Sql)[1], LotNober = GetALL2.ReelID(Sql)[2] };
-                   list.Add(show);
+                    var show = new ReelInfo() { Pannel = Pannel, CompName = GetALL2.ReelID(Sql)[0], DC = GetALL2.ReelID(Sql)[1], LotNober = GetALL2.ReelID(Sql)[2] };
+                    list.Add(show);
                 }
                 catch (Exception)
                 {
 
-                   MessageBox.Show(Pannel + "：无信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(Pannel + "：无信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
-                
+
             }
             return list;
         }
-    }  
+    }
 }
