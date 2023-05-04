@@ -13,11 +13,25 @@ namespace Execl_select
 {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm
     {
+        FormLogin login = new FormLogin();
         public Form1()
         {
+            
             InitializeComponent();
             Update.IniClass ini = new Update.IniClass(System.Windows.Forms.Application.StartupPath + @"\config\UpdateVersions.ini");
             NowVersions = ini.IniReadValue("UpdateVersions", "version");
+            Load += (s, e) =>
+             {
+                 var result = login.ShowDialog();
+                 if (result == DialogResult.OK)
+                 {
+                     this.Text= $"工具——IT自用 登录人:{model.UserID}";
+                 }
+                 else
+                 {
+                     this.Close();
+                 }
+             };
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {

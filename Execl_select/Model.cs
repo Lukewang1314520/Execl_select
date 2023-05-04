@@ -49,6 +49,10 @@ namespace Execl_select
         {
             set; get;
         }
+        public static string UserID
+        {
+            get; set;
+        }
     }
 
     public class Imei_Pannel
